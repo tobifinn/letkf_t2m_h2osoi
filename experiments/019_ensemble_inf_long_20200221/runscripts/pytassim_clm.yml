@@ -1,0 +1,31 @@
+# [str] The log files are stored in this path
+log_dir: '/p/project/chbn29/hbn29p/Projects/phd_thesis/experiments/019_ensemble_inf_long_20200221/logs/DA'
+# [int] Number of grid points per chunk
+chunksize: 10000
+# [float] localization radii in meters (horizontal)/ meters (vertical)
+loc_radius:
+    - 15000
+    - 0.7
+# [float] Inflation factor for ensemble weights
+inf_factor: 1.006
+# [str] CLM Variables, which should be changed
+assim_vars:
+    - 'H2OSOI_LIQ'
+# [str] Glob string to find CLM background files; is not used
+bg_files: ''
+# [bool] If smoother mode should be used or not
+smoother: True
+# Placeholder needed for replacement dir; is not used
+program: ''
+# Section for observations
+obs:
+    # [str] Glob string to find first guess files
+    fg_files: '*_fg'
+    # [str] Path to the utilities
+    utils_path: '/p/scratch/chbn29/hbn29p/data/tsmp/runs/utilities'
+    # [str] Path to the observations
+    path: '/p/scratch/chbn29/hbn29p/data/tsmp/runs/obs/ens/t2m_obs_016_0_1_long.nc'
+    # [str] This is the first time delta of the observations
+    td_start: '59 minutes'
+    # [str] This is the last time delta of the observations
+    td_end: '61 minutes'
