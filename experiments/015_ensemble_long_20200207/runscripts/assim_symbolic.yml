@@ -1,0 +1,16 @@
+# [str] The log files are stored in this path
+log_dir: '/p/project/chbn29/hbn29p/Projects/phd_thesis/experiments/015_ensemble_long_20200207/logs/DA'
+# COSMO settings
+COSMO:
+    # [bool] If COSMO analysis should be created by a symbolic link
+    analysis: True
+    # [str] Glob string to find COSMO background files
+    bg_files: '*_ana'
+# CLM settings
+CLM:
+    # [bool] If CLM analysis should be created by a symbolic link
+    analysis: True
+    # [str] Glob string to find CLM background files. Is only a placeholder!
+    bg_files: ''
+# [str] Path to model program, placeholder!
+program: ''
