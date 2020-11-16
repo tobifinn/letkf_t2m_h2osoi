@@ -1,0 +1,53 @@
+### Settings for the ensemble
+ENSEMBLE:
+  # [int] The number of ensemble members
+  size: 40
+
+### time settings, like start, end time etc.
+TIME:
+  # [str] The time format. This format is used to convert the time string into
+  # a datetime.datetime object
+  time_format: '%Y-%m-%d %H:%Mz'
+  # [str] The start time of the cycling environment
+  start_time: '2015-07-30 00:00z'
+  # [str] The end time of the cycling environment
+  end_time: '2015-07-31 12:00z'
+  # [int] The analysis step width in seconds. This analysis step specifies the
+  # run time in seconds, after which a new analysis is created and cycled.
+  analysis_step: 129600
+  # [int] The first guess step width in seconds. Every non-forecast run is run
+  # this number of seconds as lead time.
+  cycle_lead_time: 129600
+  # [int/str] Cosmo is run as forecast for this forecast times.
+  # String for a specific forecast time and integer as cycling forecasting in
+  # hours.
+  forecast_times:
+          - '2015-01-01 00:00z'
+  # [int] The forecast is run this amount of hours. If the number of lead times
+  # is different for different forecast start times this should be a list with
+  # the same length as forecast_time.
+  forecast_lead_time: 6
+
+### Settings about the experiment.
+EXPERIMENT:
+  # [str] Experiment identification string
+  id: '014_new_spin_up_20200206'
+  # [str] Experiment directory path. This is used if model output are relative
+  # paths.
+  path: '/p/scratch/chbn29/hbn29p/data/tsmp/runs/da_enkf_for_soil/014'
+  # [str] The models are run over this computing account
+  account: 'hbn29'
+  # [str] The slurm jobs are queued on this partition
+  partition: 'batch'
+  # [int] CPUs per node
+  cpus_per_node: 48
+  # [str] Memory per node
+  memory_per_node: '96 GB'
+  # [str] Initial data
+  path_init: '/p/home/jusers/finn1/juwels/scratch_dir/data/tsmp/runs/da_enkf_for_soil/initial/ensemble_long'
+
+OBS:
+  # [bool] If observations should be used. DEPRECATED!
+  use_obs: False
+  # [str] Path where the observations are stored
+  obs_path: '.'

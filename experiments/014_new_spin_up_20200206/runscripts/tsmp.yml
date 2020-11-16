@@ -1,0 +1,18 @@
+#TerrSysMP settings for COSMO
+COSMO:
+    # [str] Path where the boundary data for COSMO is saved
+    forcing: '/p/scratch/chbn29/hbn29p/data/tsmp/runs/inputs/cosmo/mem18'
+    # [int] Time step of COSMO in seconds
+    dt: 10
+#Settings for CLM
+CLM:
+    # [int] Time step of CLM in seconds
+    dt: 90
+    # [int] There will be an output every n-th timestep
+    out_ts: 10
+# [str] Path where the bin is stored
+program: '/p/scratch/chbn29/hbn29p/data/tsmp/runs/bins'
+# [str] The template stored in this path is used
+template: '/p/project/chbn29/hbn29p/Projects/py_bacy/templates/tsmp_template'
+# [str] The log files are stored in this path
+log_dir: '/p/project/chbn29/hbn29p/Projects/phd_thesis/experiments/014_new_spin_up_20200206/logs/TSMP'
