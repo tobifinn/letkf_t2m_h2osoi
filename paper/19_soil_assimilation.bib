@@ -162,6 +162,21 @@
   number = {3}
 }
 
+@article{bocquet_iterative_2014,
+  title = {An Iterative Ensemble {{Kalman}} Smoother},
+  author = {Bocquet, M. and Sakov, P.},
+  year = {2014},
+  volume = {140},
+  pages = {1521--1535},
+  issn = {1477-870X},
+  doi = {10.1002/qj.2236},
+  abstract = {The iterative ensemble Kalman filter (IEnKF) was recently proposed in order to improve the performance of ensemble Kalman filtering with strongly nonlinear geophysical models. The IEnKF can be used as a lag-one smoother and extended to a fixed-lag smoother: the iterative ensemble Kalman smoother (IEnKS). The IEnKS is an ensemble variational method. It does not require the use of the tangent linear of the evolution and observation models, nor the adjoint of these models: the required sensitivities (gradient and Hessian) are obtained from the ensemble. Looking for optimal performance, out of the many possible extensions we consider a quasi-static algorithm. The IEnKS is explored for the Lorenz '95 model and for a two-dimensional turbulence model. As the logical extension of the IEnKF, the IEnKS significantly outperforms standard Kalman filters and smoothers in strongly nonlinear regimes. In mildly nonlinear regimes (typically synoptic-scale meteorology), its filtering performance is marginally but clearly better than the standard ensemble Kalman filter and it keeps improving as the length of the temporal data assimilation window is increased. For long windows, its smoothing performance outranks the standard smoothers very significantly, a result that is believed to stem from the variational but flow-dependent nature of the algorithm. For very long windows, the use of a multiple data assimilation variant of the scheme, where observations are assimilated several times, is advocated. This paves the way for finer reanalysis, freed from the static prior assumption of 4D-Var but also partially freed from the Gaussian assumptions that usually impede standard ensemble Kalman filtering and smoothing.},
+  journal = {Q. J. R. Meteorol. Soc.},
+  keywords = {_tablet},
+  language = {en},
+  number = {682}
+}
+
 @article{browne_weakly_2019,
   title = {Weakly {{Coupled Ocean}}\textendash{{Atmosphere Data Assimilation}} in the {{ECMWF NWP System}}},
   author = {Browne, Philip A. and {de Rosnay}, Patricia and Zuo, Hao and Bennett, Andrew and Dawson, Andrew},
@@ -393,6 +408,22 @@
   number = {4}
 }
 
+@article{evensen_sequential_1994-1,
+  title = {Sequential Data Assimilation with a Nonlinear Quasi-Geostrophic Model Using {{Monte Carlo}} Methods to Forecast Error Statistics},
+  author = {Evensen, Geir},
+  year = {1994},
+  volume = {99},
+  pages = {10143--10162},
+  issn = {2156-2202},
+  doi = {10.1029/94JC00572},
+  abstract = {A new sequential data assimilation method is discussed. It is based on forecasting the error statistics using Monte Carlo methods, a better alternative than solving the traditional and computationally extremely demanding approximate error covariance equation used in the extended Kalman filter. The unbounded error growth found in the extended Kalman filter, which is caused by an overly simplified closure in the error covariance equation, is completely eliminated. Open boundaries can be handled as long as the ocean model is well posed. Well-known numerical instabilities associated with the error covariance equation are avoided because storage and evolution of the error covariance matrix itself are not needed. The results are also better than what is provided by the extended Kalman filter since there is no closure problem and the quality of the forecast error statistics therefore improves. The method should be feasible also for more sophisticated primitive equation models. The computational load for reasonable accuracy is only a fraction of what is required for the extended Kalman filter and is given by the storage of, say, 100 model states for an ensemble size of 100 and thus CPU requirements of the order of the cost of 100 model integrations. The proposed method can therefore be used with realistic nonlinear ocean models on large domains on existing computers, and it is also well suited for parallel computers and clusters of workstations where each processor integrates a few members of the ensemble.},
+  annotation = {\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1029/94JC00572},
+  copyright = {Copyright 1994 by the American Geophysical Union.},
+  journal = {J. Geophys. Res. Oceans},
+  language = {en},
+  number = {C5}
+}
+
 @article{fairbairn_comparing_2015,
   title = {Comparing the Ensemble and Extended {{Kalman}} Filters for in Situ Soil Moisture Assimilation with Contrasting Conditions},
   author = {Fairbairn, D. and Barbu, A. L. and Mahfouf, J.-F. and Calvet, J.-C. and Gelati, E.},
@@ -453,6 +484,15 @@
   language = {en}
 }
 
+@misc{finn_py_bacy_2020,
+  title = {Py\_bacy ({{Version Paper}} Wind Profile)},
+  author = {Finn, Tobias},
+  year = {2020},
+  month = nov,
+  doi = {10.5281/zenodo.4298499},
+  howpublished = {Zenodo}
+}
+
 @misc{finn_torch-assimilate_2020,
   title = {Torch-Assimilate ({{Version}} Paper\_enkf)},
   author = {Finn, Tobias},
@@ -463,11 +503,11 @@
   howpublished = {Zenodo}
 }
 
-@article{finn_towards_2020,
+@article{finn_wind_profile_2020,
   title = {Towards Assimilation of Wind Profile Observations in the Atmospheric Boundary Layer with a Sub-Kilometre-Scale Ensemble Data Assimilation System},
   author = {Finn, Tobias Sebastian and Geppert, Gernot and Ament, Felix},
   year = {2020},
-  month = jan,
+  month = may,
   volume = {72},
   pages = {1--14},
   publisher = {{Taylor \& Francis}},
@@ -1195,6 +1235,23 @@
   keywords = {4D-Var,EKF,IFS,numerical weather prediction},
   language = {en},
   number = {674}
+}
+
+@article{sakov_iterative_2012,
+  title = {An {{Iterative EnKF}} for {{Strongly Nonlinear Systems}}},
+  author = {Sakov, Pavel and Oliver, Dean S. and Bertino, Laurent},
+  year = {2012},
+  month = jun,
+  volume = {140},
+  pages = {1988--2004},
+  publisher = {{American Meteorological Society}},
+  issn = {1520-0493, 0027-0644},
+  doi = {10.1175/MWR-D-11-00176.1},
+  abstract = {{$<$}section class="abstract"{$><$}h2 class="abstractTitle text-title my-1" id="d285e2"{$>$}Abstract{$<$}/h2{$><$}p{$>$}The study considers an iterative formulation of the ensemble Kalman filter (EnKF) for strongly nonlinear systems in the perfect-model framework. In the first part, a scheme is introduced that is similar to the ensemble randomized maximal likelihood (EnRML) filter by Gu and Oliver. The two new elements in the scheme are the use of the ensemble square root filter instead of the traditional (perturbed observations) EnKF and rescaling of the ensemble anomalies with the ensemble transform matrix from the previous iteration instead of estimating sensitivities between the ensemble observations and ensemble anomalies at the start of the assimilation cycle by linear regression. A simple modification turns the scheme into an ensemble formulation of the iterative extended Kalman filter. The two versions of the algorithm are referred to as the iterative EnKF (IEnKF) and the iterative extended Kalman filter (IEKF).{$<$}/p{$><$}p{$>$}In the second part, the performance of the IEnKF and IEKF is tested in five numerical experiments: two with the 3-element Lorenz model and three with the 40-element Lorenz model. Both the IEnKF and IEKF show a considerable advantage over the EnKF in strongly nonlinear systems when the quality or density of observations are sufficient to constrain the model to the regime of mainly linear propagation of the ensemble anomalies as well as constraining the fast-growing modes, with a much smaller advantage otherwise.{$<$}/p{$><$}p{$>$}The IEnKF and IEKF can potentially be used with large-scale models, and can represent a robust and scalable alternative to particle filter (PF) and hybrid PF\textendash EnKF schemes in strongly nonlinear systems.{$<$}/p{$><$}/section{$>$}},
+  chapter = {Monthly Weather Review},
+  journal = {Mon. Weather Rev.},
+  language = {EN},
+  number = {6}
 }
 
 @article{santanello_jr._understanding_2019,
