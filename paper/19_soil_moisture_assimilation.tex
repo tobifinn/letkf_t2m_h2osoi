@@ -1,6 +1,6 @@
  % !TeX spellcheck = en_GB
 
-\documentclass[hess, manuscript]{copernicus}
+\documentclass[HESSD, manuscript]{copernicus}
 
 %\usepackage{setspace}
 %\doublespacing
@@ -42,18 +42,18 @@
 
 \begin{abstract}
 	We revise the potential of assimilating atmospheric boundary layer observations into the soil moisture.
-	Previous studies often stated a negative assimilation impact of boundary layer observations on the soil moisture analysis, but developments in physically-consistent hydrological model systems and ensemble-based data assimilation lead to an emerging potential of boundary layer observations for land surface data assimilation.
+	Previous studies often stated a negative assimilation impact of boundary layer observations on the soil moisture analysis, but recent developments in physically-consistent hydrological model systems and ensemble-based data assimilation lead to an emerging potential of boundary layer observations for land surface data assimilation.
 	To explore this potential, we perform idealized twin experiments for a seven-day period in Summer 2015 with a coupled atmosphere-land modelling platform.
-	We use here TerrSysMP for limited-area simulations with a horizontal resolution $1.0\,\text{km}$ in the land surface component.
+	We use TerrSysMP for these limited-area simulations with a horizontal resolution $1.0\,\text{km}$ in the land surface component.
 	We assimilate sparse synthetic 2-metre-temperature observations into the land surface component and update the soil moisture with a localized Ensemble Kalman filter.
 	We show a positive assimilation impact of these observations on the soil moisture analysis during day-time and a neutral impact during night.
-	Furthermore, we find that hourly-filtering with a three-dimensional Ensemble Kalman filter results in smaller errors than daily-smoothing with a one-dimensional Simplified Extended Kalman filter, and the Ensemble Kalman filter allows us moreover to directly assimilate boundary layer observations without any intermediate optimal interpolation step.
+	Furthermore, we find that hourly-filtering with a three-dimensional Ensemble Kalman filter results in smaller errors than daily-smoothing with a one-dimensional Simplified Extended Kalman filter, whereas the Ensemble Kalman filter additionally allows us to directly assimilate boundary layer observations without an intermediate optimal interpolation step.
 	We increase the physical consistency in the analysis for the land surface and boundary by updating the atmospheric temperature together with the soil moisture, which as a consequence further reduces errors in the soil moisture analysis.
 	Based on these results, we conclude that we can merge the decoupled data assimilation cycles for the land surface and the atmosphere into one single cycle with hourly-like update steps.
 \end{abstract}
 
 
-\copyrightstatement{TEXT}
+%\copyrightstatement{TEXT}
 %
 \section{Introduction}
 Assimilation of atmospheric boundary layer observations into land surface models primarily improves the coupled forecast of the atmospheric boundary layer.
@@ -321,7 +321,7 @@ Into these existing background trajectories, we assimilate observations from the
 For our ensemble-based LETKF experiment, we have to define additional localization radii and an inflation factor.
 We choose here a horizontal localization radius of $15\,\text{km}$, which is quite small in comparison to operationally used values in the atmosphere (between $50\,\text{km}$ and $100\,\text{km}$, \citealt{schraff_kilometre-scale_2016}).
 This small radius represents smaller error-covariance length-scales for the land surface and atmospheric boundary layer compared to typical error length-scales in the free atmosphere.
-In the atmosphere, we localize in terms of logarithmic pressure and use a typical value ($0.3\,\ln\text{hPa}$), which is also used in operational settings \citep{schraff_kilometre-scale_2016}.
+In the atmosphere, we localize vertically in terms of logarithmic pressure and use a typical value ($0.3\,\ln\text{hPa}$), which is also used in operational settings \citep{schraff_kilometre-scale_2016}.
 Observations in the atmospheric boundary layer have their largest impact on soil moisture analysis at root-depth \citep{munozsabater_assimilation_2019}, while afterwards the physically explainable impact is negligible.
 Our vertical localization radius in soil is therefore chosen ($0.7\,\text{m}$) such that the innovations for soil levels below the root-depth ($5$-th layer) are dampened.
 Because the impact of observations is additive, we can sum up the localization weights and estimate the here so-called potential observational equivalents (Figure \ref{fig:obs_equivalent}).
@@ -375,9 +375,24 @@ We will analyse in a first step the impact of data assimilation into soil moistu
 	\label{fig:err_t_long}
 \end{figure*}
 
-Every data assimilation experiment (SEKF; LETKF Soil; LETKF Soil+Temp) has a substantially lower Root-Mean-Squared-Error (RMSE) to NATURE than their counterpart without data assimilation (DET; ENS).
+Every data assimilation experiment (SEKF; LETKF Soil; LETKF Soil+Temp) has a substantially lower Root-Mean-Squared-Error (RMSE) to NATURE than their counterpart without data assimilation (DET; ENS, Table \ref{tab:exp_rmse}).
 Because this result is found throughout the experiments, this improvement is independent of additional updates in the atmospheric boundary layer.
 This result confirms previous studies that updating the soil moisture with 2-metre-temperature observations has a positive assimilation impact on the forecast of the atmospheric boundary layer.
+
+\begin{table}[ht]
+	\caption{
+		Spatial and temporal root-mean squared error for depicted experiments compared to NATURE with hourly data from 2015-07-31 13:00Z to 2017-08-07 18:00Z, representing the background trajectory of the experiments.\label{tab:exp_rmse}
+	}
+	\begin{tabular}{l|c|c}
+		Name & T2m (K) & H2O ($\text{m}^3 \text{m}^{-3}$)\\
+		\hline
+		ENS & 0.158 & 0.0169 \\
+		LETKF Soil & 0.105 & 0.0114 \\
+		LETKF Soil + Temp & 0.098 & 0.0112 \\
+		DET & 0.178 & 0.0171 \\
+		SEKF & 0.118 & 0.0145
+	\end{tabular}
+\end{table}
 
 All experiments have a clearly defined diurnal cycle in the RMSE with the highest errors during day-time.
 We find the same diurnal cycle in the data assimilation impacts with the highest impacts during day-time and only small impacts during night.
@@ -642,7 +657,7 @@ A partial collapse of the boundary layer into a thin layer above the land surfac
 We can more easily use the temporal development with hourly-filtering, whereas we might have problems with daily-smoothing as done within the SEKF, because we would have to select representative observation times.
 
 We can further exploit the temporal development of the boundary layer with hourly-smoothing instead of hourly-filtering.
-Because land surface perturbations need some time to propagate into the atmosphere, one possibility would be to assimilate future observations within a given assimilation window and a 4D-LETKF \citep{harlim_four-dimensional_2007,kalnay_response_2007}, which would be similar to an iterative ensemble Kalman smoothing scheme \citep{kalnay_accelerating_2010, sakov_iterative_2012,bocquet_iterative_2014}.
+Because land surface perturbations need some time to propagate into the atmosphere, one possibility would be to assimilate future observations within a given assimilation window and a 4D-LETKF \citep{harlim_four-dimensional_2007,kalnay_response_2007}, which would be similar to an Iterative Ensemble Kalman smoothing scheme \citep{kalnay_accelerating_2010, sakov_iterative_2012,bocquet_iterative_2014}.
 Together with smoothing, we could additionally introduce time-dependent localization to tackle problems related to errors by the ensemble approximation of the covariances.
 
 All in all, our results support the view that assimilation of boundary layer observations has a positive impact on the soil moisture, if the model system can adequately represent the governing processes in the boundary layer and land surface.
@@ -652,39 +667,36 @@ We can therefore see this study as first step towards the goal of assimilating a
 In this study, we assimilate synthetic 2-metre-temperature observations into soil moisture in a fully-coupled limited-area model system for a seven-day period in Summer 2015.
 Based on our results in idealized twin experiments, we conclude the following:
 \begin{enumerate}
-	\item Assimilation of boundary layer observations improves the soil moisture analysis during day-time and has no impact at night.
-	Boundary layer observations yield in that respect the highest information content above soil moisture saturations between $0.2$ and $0.5$. 
-	\item Hourly-updating the soil moisture with a Localized Ensemble Transform Kalman filter results in a smaller error for the soil moisture analysis than daily-smoothing with a Simplified Extended Kalman filter, and moreover, we can directly assimilate sparse boundary layer observations across the atmosphere-land interface without an intermediate optimal interpolation step.
+	\item Assimilation of boundary layer observations improves the soil moisture analysis during day-time and has no impact during night; boundary layer observations yield the highest information content for land surface data assimilation above soil moisture saturations between $0.2$ and $0.5$. 
+	\item Hourly-updating the soil moisture with a Localized Ensemble Transform Kalman filter results in a smaller error for the soil moisture analysis than daily-smoothing with a Simplified Extended Kalman filter, and in addition, we can directly assimilate sparse boundary layer observations across the atmosphere-land interface without an intermediate optimal interpolation step.
 	\item Ensemble-based approximations of the background covariances and Jacobians stabilizes the analysis increments in a Simplified Extended Kalman filter.
-	\item Updating the atmospheric temperature together with the soil moisture increases the physical consistency in the analysis for the land surface and boundary layer, which in fact reduces additional errors in the soil moisture analysis.
-	\item We can merge the decoupled data assimilation cycles, one for the land surface and one for numerical weather prediction, into one strongly-coupled cycle with updates across the atmosphere-land interface and cycling lengths adapted to hourly-like time-scales of the faster atmospheric compartment.
+	\item Updating the atmospheric temperature together with the soil moisture increases the physical consistency in the analysis for the boundary layer and land surface, which in fact reduces additional errors in the soil moisture analysis.
+	\item We can merge the decoupled data assimilation cycles -- one for the land surface and one for numerical weather prediction -- into one strongly-coupled cycle with updates across the atmosphere-land interface and hour-like cycling lengths of the faster atmospheric compartment.
 \end{enumerate}
 
 
+\codeavailability{
+	Scripts used for the experiments and results can be found under \url{https://github.com/tobifinn/letkf_t2m_h2osoi}.
+	We additionlly provide the source code for the coupling framework and the data assimilation under \cite{finn_py_bacy_2020, finn_torch-assimilate_2020}, whereas the modelling platform TerrSysMP can be obtained from \url{https://www.terrsysmp.org/}.
+}
 
-%\authorcontribution{TEXT}
-%
-%\competinginterests{TEXT}
+\authorcontribution{
+	TF, GG, and FA initialized the research idea.
+	TF constructed the experiments and scripts for the results, whereas the results were discussed by TF, GG, and FA.
+	TF composed the initial manuscript, which was refined by TF, GG, and FA.
+}
 
-\appendix
+\competinginterests{
+	The authors declare that they have no conflict of interest.
+}
 
-
-%\begin{figure*}
-%	%\centering
-%	\includegraphics[width=\textwidth]{figures/fig_07_spatial.png}
-%	\caption{
-%		Shown are assimilation impacts on the soil moisture in root-depth. For (a), (c), and (d), red shows a positive assimilation impact, while bluish colours indicate a negative assimilation impact.
-%		(a) The ensemble mean difference in RMSE between the LETKF Soil+Temp experiment to the ENS experiment, averaged over all assimilation times.
-%		(b) The ensemble mean initial deviations of the ENS experiment compared to the NATURE run. Deviating from the other sub-figures, red colours show large deviations.
-%		(c) *** MISSING ***
-%		(d) *** MISSING ***
-%	}
-%	\label{fig:spatial_impact}
-%\end{figure*}
-
-%%%%%%%%%%%%%%%%%
-%REFERENCES
-%%%%%%%%%%%%%%%%%
+\begin{acknowledgements}
+	This work is a contribution to the project FOR2131, "Data Assimilation for Improved Characterization of Fluxes across Compartmental Interfaces", funded by the
+	"Deutsche Forschungsgemeinschaft" (DFG, German Research
+	Foundation) under grant 243358811.
+	We would thank the whole research unit FOR2131 for discussions along the track and especially Bernd Schalge for providing us the data for the initial spin-up and lateral boundary conditions.
+	In addition, we want to acknowledge researchers at the "Deutscher Wetterdienst" for helpful hints in the initial phase of the research.
+\end{acknowledgements}
 
 \bibliographystyle{copernicus}
 \bibliography{19_soil_assimilation}
